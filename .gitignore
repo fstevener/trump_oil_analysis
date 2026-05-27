@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+
+# R
+r/renv/library/
+
+# OS
+.DS_Store
