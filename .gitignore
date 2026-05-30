@@ -1,9 +1,30 @@
+# =========================
+# Python
+# =========================
 .venv/
 __pycache__/
 *.pyc
+.ipynb_checkpoints/
 
-# R
-r/renv/library/
+# =========================
+# R / renv
+# =========================
+renv/library/
+renv/python/
+.Rhistory
+.RData
+.Rproj.user/
 
-# OS
+# =========================
+# Outputs / Results
+# =========================
+3_results/
+
+# OPTIONAL: falls große Rohdaten NICHT ins Git sollen
+# 0_data/
+
+# =========================
+# OS / Editor
+# =========================
 .DS_Store
+.vscode/

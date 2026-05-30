@@ -127,36 +127,13 @@ renv::restore()
 
 To investigate whether Donald Trump’s tweet activity has a measurable impact on oil price movements using statistical and time series methods.
 
-
--------------------------------------
-
-
-# Trump Tweets vs Oil Price Analysis
-
-## Goal
-Investigate whether Donald Trump’s tweets influence oil prices.
-
-## Methods
-- Time series analysis
-- Sentiment analysis
-- Regression models
-
-## Setup
-conda env create -f environment.yml
-Rscript -e "renv::restore()"
-
-## Pipeline
-1. Data collection (Python)
-2. Preprocessing (Python)
-3. Analysis (R/Python)
-4. Visualization (R)
-
-## Authors
-
 | Sprache | Dependency-System      |
 | ------- | ---------------------- |
 | Python  | pip + requirements.txt |
 | R       | renv + renv.lock       |
+
+
+-------------------------------------
 
 
 wie gehe ich jetzt im laufe des projeketes vor wenn ich neue pakete benötige
@@ -233,3 +210,32 @@ R (renv)
 install.packages() → renv::snapshot()
 Python (venv)
 pip install → requirements.txt aktualisieren (manuell)
+
+
+-----------------------------
+
+Best Practice für dein Projekt
+
+Da du beides verwendest:
+
+project/
+│
+├── .venv/
+├── requirements.txt
+├── renv.lock
+├── renv/
+├── src/
+└── ...
+Neue Python-Abhängigkeit → pip freeze > requirements.txt
+Neue R-Abhängigkeit → renv::snapshot()
+Beides anschließend committen
+
+Dann können Kollegen exakt dieselben Python- und R-Versionen der Pakete wiederherstellen:
+
+pip install -r requirements.txt
+
+und in R:
+
+renv::restore()
+
+Ein kleiner Hinweis: Den Ordner .venv/ committet man normalerweise nicht nach GitHub (er gehört in .gitignore). Bei renv ist es etwas anders: Die Datei renv.lock wird committet, der eigentliche Paket-Cache meist nicht. Daher lohnt es sich zu prüfen, welche renv-Dateien dein Git aktuell verfolgt.
